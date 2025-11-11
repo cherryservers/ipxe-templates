@@ -1,0 +1,8 @@
+#!ipxe
+# AlmaLinux 10 (Freshwater) installer using the BaseOS tree.
+dhcp
+set version 10.0
+set mirror http://repo.almalinux.org/almalinux/${version}/BaseOS/x86_64/os
+kernel ${mirror}/images/pxeboot/vmlinuz ip=dhcp inst.stage2=${mirror} inst.repo=${mirror}
+initrd ${mirror}/images/pxeboot/initrd.img
+boot

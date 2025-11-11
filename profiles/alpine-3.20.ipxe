@@ -1,0 +1,10 @@
+#!ipxe
+# Alpine Linux 3.20 netboot (LTS kernel).
+dhcp
+set version v3.20
+set arch x86_64
+set mirror http://dl-cdn.alpinelinux.org/alpine/${version}/releases/${arch}
+set repo http://dl-cdn.alpinelinux.org/alpine/${version}/main
+kernel ${mirror}/netboot/vmlinuz-lts ip=dhcp alpine_repo=${repo} modules=loop,squashfs,sd-mod,usb-storage
+initrd ${mirror}/netboot/initramfs-lts
+boot

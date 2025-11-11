@@ -1,0 +1,9 @@
+#!ipxe
+# Ubuntu 24.04 LTS (Noble Numbat) Subiquity live-server installer.
+dhcp
+set release 24.04.1
+set image ubuntu-${release}-live-server-amd64
+set mirror http://cloud-images.ubuntu.com/releases/${release}/release
+kernel ${mirror}/${image}.vmlinuz ip=dhcp url=${mirror}/${image}.iso fsck.mode=skip autoinstall ds=\"nocloud-net;s=http://example.invalid/\" ---
+initrd ${mirror}/${image}.initrd
+boot
