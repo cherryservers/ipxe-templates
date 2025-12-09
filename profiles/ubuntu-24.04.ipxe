@@ -1,9 +1,32 @@
 #!ipxe
-# Ubuntu 24.04 LTS (Noble Numbat) Subiquity live-server installer.
+
+# Ubuntu 24.04 LTS (Noble) manual netboot, amd64
+
 dhcp
-set release 24.04.1
-set image ubuntu-${release}-live-server-amd64
-set mirror http://cloud-images.ubuntu.com/releases/${release}/release
-kernel ${mirror}/${image}.vmlinuz ip=dhcp url=${mirror}/${image}.iso fsck.mode=skip autoinstall ds=\"nocloud-net;s=http://example.invalid/\" ---
-initrd ${mirror}/${image}.initrd
+
+# ---------------- Network config ----------------
+set client_ip ${IP_ADDRESS}
+set gateway ${GATEWAY}
+set netmask ${NETMASK}
+set iface ${IFACE}
+set dns1 10.100.0.53
+set dns2 10.100.0.54
+# -------------------------------------------------------
+
+# Series directory and exact ISO version
+set series   24.04
+set iso_ver  24.04.3
+set arch     amd64
+
+set base       http://releases.ubuntu.com/${series}
+set kernel_url ${base}/netboot/${arch}/linux
+set initrd_url ${base}/netboot/${arch}/initrd
+set iso_url    ${base}/ubuntu-${iso_ver}-live-server-${arch}.iso
+
+echo Booting Ubuntu ${iso_ver} (manual install)...
+imgfree
+kernel ${kernel_url} \
+    ip=${client_ip}::${gateway}:${netmask}::${iface}:off:${dns1}:${dns2} \
+    url=${iso_url} fsck.mode=skip
+initrd ${initrd_url}
 boot
