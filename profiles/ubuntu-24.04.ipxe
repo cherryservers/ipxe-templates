@@ -11,7 +11,7 @@ set netmask ${NETMASK}
 set iface ${IFACE}
 set dns1 10.100.0.53
 set dns2 10.100.0.54
-# -------------------------------------------------------
+# -------------------------------------------------
 
 # Series directory and exact ISO version
 set series   24.04

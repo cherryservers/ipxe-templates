@@ -1,9 +1,21 @@
 #!ipxe
 # Debian 13 (Trixie) netboot installer.
 dhcp
+
+# ---------------- Network config ----------------
+set client_ip ${IP_ADDRESS}
+set gateway ${GATEWAY}
+set netmask ${NETMASK}
+set iface ${IFACE}
+set dns1 10.100.0.53
+set dns2 10.100.0.54
+# -------------------------------------------------
+
 set suite trixie
 set arch amd64
-set mirror http://deb.debian.org/debian/dists/${suite}/main/installer-${arch}/current/images/netboot/debian-installer/${arch}
-kernel ${mirror}/linux ip=dhcp auto=true priority=critical vga=788 locale=en_US
+set mirror https://deb.debian.org/debian/dists/${suite}/main/installer-${arch}/current/images/netboot/debian-installer/${arch}
+kernel ${mirror}/linux \
+    ip=${client_ip}::${gateway}:${netmask}::${iface}:off:${dns1}:${dns2} \
+    auto=true priority=critical vga=788 locale=en_US
 initrd ${mirror}/initrd.gz
 boot
