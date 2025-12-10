@@ -30,7 +30,6 @@ imgfree
 kernel ${kernel_url} \
     modprobe.blacklist=rndis_host \
     ip=dhcp \
-    #ip=${client_ip}::${gateway}:${netmask}::${iface}:off:${dns1}:${dns2} \
     url=${iso_url} fsck.mode=skip
 initrd ${initrd_url}
 boot
