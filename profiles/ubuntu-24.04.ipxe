@@ -1,7 +1,5 @@
 #!ipxe
-
 # Ubuntu 24.04 LTS (Noble) manual netboot, amd64
-
 dhcp
 
 # ---------------- Network config ----------------
