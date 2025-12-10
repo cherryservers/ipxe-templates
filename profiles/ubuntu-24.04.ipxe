@@ -28,7 +28,9 @@ set iso_url    ${base}/ubuntu-${iso_ver}-live-server-${arch}.iso
 echo Booting Ubuntu ${iso_ver} (manual install)...
 imgfree
 kernel ${kernel_url} \
-    ip=${client_ip}::${gateway}:${netmask}::${iface}:off:${dns1}:${dns2} \
+    modprobe.blacklist=rndis_host \
+    ip=dhcp \
+    #ip=${client_ip}::${gateway}:${netmask}::${iface}:off:${dns1}:${dns2} \
     url=${iso_url} fsck.mode=skip
 initrd ${initrd_url}
 boot
