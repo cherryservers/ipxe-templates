@@ -3,6 +3,10 @@
 dhcp
 
 # ---------------- Network config ----------------
+# The variables ${IP_ADDRESS}, ${GATEWAY},
+# ${NETMASK}, and ${IFACE} are automatically
+# populated during script execution.
+
 set client_ip ${IP_ADDRESS}
 set gateway ${GATEWAY}
 set netmask ${NETMASK}
